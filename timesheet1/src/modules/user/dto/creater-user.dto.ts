@@ -36,5 +36,5 @@ export class CreateUserDto {
   levelId: number;
 
   @IsNumber()
-  postition: number;
+  postitionId: number;
 }
