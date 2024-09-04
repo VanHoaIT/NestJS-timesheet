@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  timesheet-database:
+    image: postgres:latest
+    container_name: timesheet-database
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timesheet
+    ports:
+      - '5432:5432'
+    volumes:
+      - /data/postgres:/data/postgres
+    restart: always

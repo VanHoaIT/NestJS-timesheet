@@ -1,0 +1,64 @@
+body {
+  background-color: #00bcd4;
+  margin: 0; /* Xóa khoảng cách mặc định của body */
+  display: flex; /* Sử dụng Flexbox để căn giữa trang */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;
+}
+
+.div-timesheet {
+  display: flex; /* Sử dụng Flexbox để căn giữa nội dung bên trong */
+  flex-direction: column; /* Đặt các phần tử con theo chiều dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  padding-top: 50px; /* Thêm khoảng cách xung quanh nội dung */
+  border-radius: 8px; /* Bo góc cho đẹp hơn */
+}
+
+.div-text-timesheet {
+  font-size: 50px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.div-login {
+  background-color: white;
+  width: 360px;
+  height: 480px;
+  padding: 20px;
+  display: block;
+}
+
+.div-login > * {
+  margin-bottom: 10px; /* Khoảng cách giữa các thành phần */
+}
+
+/* Loại bỏ khoảng cách cuối cùng không cần thiết cho phần tử cuối cùng */
+.div-login > *:last-child {
+  margin-bottom: 0;
+}
+
+.div-input > * {
+  margin-bottom: 10px;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+h2 {
+  font-size: 50px;
+  margin: 0; /* Loại bỏ khoảng cách mặc định */
+  text-align: center;
+  color: rebeccapurple;
+}
+
+.card-login {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 300px;
+  background-color: red;
+}
