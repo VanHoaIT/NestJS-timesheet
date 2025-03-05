@@ -4,7 +4,7 @@ import { Exclude } from 'class-transformer';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BranchEntity } from '../branch/branch.entity';
 import { LevelEntity } from '../level/level.entity';
-import { PostitionEntity } from '../postition/postition.entity';
+import { PositionEntity } from '../position/position.entity';
 import { UserTypeEntity } from '../UserType/userType.entity';
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity {
@@ -38,19 +38,31 @@ export class UserEntity extends AbstractEntity {
   @Exclude()
   hashRecoveryToken?: string;
 
+  @Column({ nullable: true })
+  branch_id: number;
+
+  @Column({ nullable: true })
+  user_type_id: number;
+
+  @Column({ nullable: true })
+  level_id: number;
+
+  @Column({ nullable: true })
+  position_id: number;
+
   @ManyToOne(() => BranchEntity, (branch) => branch.users)
   @JoinColumn({ name: 'branch_id' })
   branch?: BranchEntity;
 
   @ManyToOne(() => UserTypeEntity, (type) => type.users)
-  @JoinColumn({ name: 'userType_id' })
+  @JoinColumn({ name: 'user_type_id' })
   type?: UserTypeEntity;
 
   @ManyToOne(() => LevelEntity, (level) => level.users)
   @JoinColumn({ name: 'level_id' })
   level?: LevelEntity;
 
-  @ManyToOne(() => PostitionEntity, (postition) => postition.users)
-  @JoinColumn({ name: 'postition_id' })
-  postition?: PostitionEntity;
+  @ManyToOne(() => PositionEntity, (position) => position.users)
+  @JoinColumn({ name: 'position_id' })
+  position?: PositionEntity;
 }

@@ -5,7 +5,7 @@ import {
 
 export class UserLoginDto {
   @EmailField({
-    default: 'hoa1@ncc.com',
+    default: 'vanhoa@it.com',
   })
   readonly email!: string;
 

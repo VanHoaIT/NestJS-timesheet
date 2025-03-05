@@ -65,6 +65,10 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
+    if (user.active == false) {
+      throw new NotFoundException('User not active');
+    }
+
     const isValidPassword = await AppUtil.validateHash(
       plainPassword,
       user?.password,

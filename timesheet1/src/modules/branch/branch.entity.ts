@@ -8,10 +8,9 @@ export class BranchEntity extends AbstractEntity {
   name: string;
   @Column()
   displayName: string;
-  @Column()
-  color: string;
+
   @Column({ type: 'jsonb', nullable: true })
-  workingTime: WorkingTime;
+  workingTime?: WorkingTime;
 
   @OneToMany(() => UserEntity, (user) => user.branch)
   users?: UserEntity[];
