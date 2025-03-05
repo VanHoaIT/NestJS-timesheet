@@ -5,6 +5,7 @@ import {
   IsEmail,
   IsEnum,
   IsNumber,
+  IsOptional,
   IsString,
   MinLength,
 } from 'class-validator';
@@ -27,14 +28,18 @@ export class CreateUserDto {
   sex: sexType;
 
   @IsNumber()
-  branchId: number;
+  @IsOptional()
+  branchId?: number;
 
   @IsNumber()
-  typeId: number;
+  @IsOptional()
+  typeId?: number;
 
   @IsNumber()
-  levelId: number;
+  @IsOptional()
+  levelId?: number;
 
   @IsNumber()
-  postitionId: number;
+  @IsOptional()
+  positionId?: number;
 }

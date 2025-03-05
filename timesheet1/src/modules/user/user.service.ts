@@ -18,7 +18,7 @@ export class UserService {
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const { email, password, sex, branchId, typeId, levelId, postitionId } =
+    const { email, password, sex, branchId, typeId, levelId, positionId } =
       createUserDto;
     if (await this.isEmailExist(email)) {
       throw new BadRequestException('Email already exists');
@@ -31,7 +31,7 @@ export class UserService {
       branch: { id: branchId },
       type: { id: typeId },
       level: { id: levelId },
-      postition: { id: postitionId },
+      position: { id: positionId },
     });
     const savedUser = await this.userRepository.save(user);
     return savedUser;
