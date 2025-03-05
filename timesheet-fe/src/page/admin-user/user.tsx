@@ -26,10 +26,10 @@ const user = () => {
           </p>
           <p>0987654321</p>
           <div className="space-x-2">
-            <Badge variant="outline">QN</Badge>
-            <Badge variant="outline">TTS</Badge>
-            <Badge variant="outline">Dev</Badge>
-            <Badge variant="outline">Level1</Badge>
+            <Badge variant="outline">{userData?.branch?.name}</Badge>
+            <Badge variant="outline">{userData?.type?.name}</Badge>
+            <Badge variant="outline">{userData?.level?.name}</Badge>
+            <Badge variant="outline">{userData?.position?.name}</Badge>
           </div>
         </Card>
         <Card className="w-[60%] shadow-lg">
@@ -46,7 +46,7 @@ const user = () => {
               </p>
               <p>{userData?.email}</p>
               <p>1</p>
-              <p> {userData?.branch?.name}</p>
+              <p> {userData?.branch?.displayName}</p>
             </div>
             <div className="">
               <p>Usertype</p>
@@ -54,9 +54,9 @@ const user = () => {
               <p>Position</p>
             </div>
             <div className="">
-              <p>3</p>
-              <p>3</p>
-              <p>4</p>
+              <p>{userData?.type?.name}</p>
+              <p>{userData?.level?.name}</p>
+              <p>{userData?.position?.name}</p>
             </div>
           </div>
         </Card>

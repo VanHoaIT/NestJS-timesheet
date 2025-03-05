@@ -6,34 +6,6 @@ const MyInfor = () => {
         <h2>my inforation</h2>
         <h2>my inforation</h2>
         <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
-        <h2>my inforation</h2>
       </div>
     </>
   );
