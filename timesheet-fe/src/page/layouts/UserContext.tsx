@@ -1,3 +1,4 @@
+import { GetUser } from "@/service/api/GetUser";
 import React, {
   createContext,
   ReactNode,
@@ -28,11 +29,18 @@ interface User {
   type?: {
     name: string;
   };
+  userInfo?: {
+    bank: string;
+    bank_account: string;
+    phone: string;
+    current_address: string;
+  };
 }
 
 interface UserContextType {
   userData: User | null;
   setUserData: (data: User | null) => void;
+  refreshUserData: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -53,8 +61,22 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
     }
   }, [userData]);
 
+  const refreshUserData = async () => {
+    if (!userData?.email) return;
+
+    try {
+      const res = await GetUser(userData.email);
+      if (res) {
+        console.log("Dữ liệu user mới:", res.data);
+        setUserData(res.data.data);
+      }
+    } catch (error) {
+      console.error("Lỗi khi làm mới dữ liệu user:", error);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{ userData, setUserData, refreshUserData }}>
       {children}
     </UserContext.Provider>
   );
