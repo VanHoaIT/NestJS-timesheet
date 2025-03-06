@@ -1,10 +1,11 @@
 import { sexType } from '@src/common/constants/sexType';
 import { AbstractEntity } from '@src/common/database/abstract.entity';
 import { Exclude } from 'class-transformer';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { BranchEntity } from '../branch/branch.entity';
 import { LevelEntity } from '../level/level.entity';
 import { PositionEntity } from '../position/position.entity';
+import { UserInfoEntity } from '../userInfo/userInfo.entity';
 import { UserTypeEntity } from '../UserType/userType.entity';
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity {
@@ -65,4 +66,10 @@ export class UserEntity extends AbstractEntity {
   @ManyToOne(() => PositionEntity, (position) => position.users)
   @JoinColumn({ name: 'position_id' })
   position?: PositionEntity;
+
+  @OneToOne(() => UserInfoEntity, (userInfo) => userInfo.user, {
+    cascade: true,
+  })
+  @JoinColumn({ name: 'user_info_id' })
+  userInfo: UserInfoEntity;
 }

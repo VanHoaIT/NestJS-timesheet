@@ -4,6 +4,7 @@ import { PositionEntity } from '@src/modules/position/position.entity';
 import { UserEntity } from '@src/modules/user/user.entity';
 import { UserTypeEntity } from '@src/modules/UserType/userType.entity';
 
+import { UserInfoEntity } from '@src/modules/userInfo/userInfo.entity';
 import AppUtil from 'src/common/utils';
 import { dataSource } from '../../../ormconfig';
 
@@ -15,6 +16,7 @@ async function seedData() {
   const levelRepository = dataSource.getRepository(LevelEntity);
   const userTypeRepository = dataSource.getRepository(UserTypeEntity);
   const userRepository = dataSource.getRepository(UserEntity);
+  const userInfoRepository = dataSource.getRepository(UserInfoEntity);
 
   const branches = [
     { name: 'QN', displayName: 'Quy Nhon' },
@@ -43,7 +45,7 @@ async function seedData() {
     }
   }
 
-  const userTypes = [{ name: 'userTypes 1' }, { name: 'userTypes 2' }];
+  const userTypes = [{ name: 'TSS' }, { name: 'Staff' }];
   for (const userType of userTypes) {
     const exists = await userTypeRepository.findOneBy({ name: userType.name });
     if (!exists) {
@@ -60,7 +62,11 @@ async function seedData() {
       branch: 'DN',
       position: 'Admin',
       level: 'Intern',
-      userType: 'userTypes 1',
+      userType: 'TSS',
+      phone: '0123456789',
+      bank: 'Bank ABC',
+      bank_account: '1234567890',
+      current_address: '87 Pham Dong, HCM',
     },
     {
       firstName: 'VanHoa',
@@ -70,7 +76,11 @@ async function seedData() {
       branch: 'QN',
       position: 'Dev',
       level: 'Fresher',
-      userType: 'userTypes 1',
+      userType: 'Staff',
+      phone: '0987654321',
+      bank: 'Bank VCB',
+      bank_account: '9876543210',
+      current_address: '123 Le Duan, QN',
     },
   ];
 
@@ -104,6 +114,19 @@ async function seedData() {
         type: { id: userType.id },
       });
 
+      await userRepository.save(newUser);
+
+      const newUserInfo = userInfoRepository.create({
+        user: newUser,
+        phone: user.phone,
+        bank: user.bank,
+        bank_account: user.bank_account,
+        current_address: user.current_address,
+      });
+
+      await userInfoRepository.save(newUserInfo);
+
+      newUser.userInfo = newUserInfo;
       await userRepository.save(newUser);
     }
   }

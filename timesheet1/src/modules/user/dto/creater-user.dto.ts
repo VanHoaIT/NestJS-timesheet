@@ -42,4 +42,20 @@ export class CreateUserDto {
   @IsNumber()
   @IsOptional()
   positionId?: number;
+
+  @IsString()
+  @IsOptional()
+  phone?: string;
+
+  @IsString()
+  @IsOptional()
+  bank?: string;
+
+  @IsString()
+  @IsOptional()
+  bank_account?: string;
+
+  @IsString()
+  @IsOptional()
+  current_address?: string;
 }
