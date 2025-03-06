@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UpdateUserInfoDto } from '../userInfo/dto/userInfo.dto';
-import { CreateUserDto } from './dto/creater-user.dto';
+import { ChangePasswordDto, CreateUserDto } from './dto/creater-user.dto';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 
@@ -33,5 +33,13 @@ export class UserController {
     @Body() updateUserinfo: UpdateUserInfoDto,
   ) {
     return this.userService.updateUserInfo(id, updateUserinfo);
+  }
+
+  @Put('changePassword/:id')
+  async changePassword(
+    @Param('id') id: number,
+    @Body() passwordDto: ChangePasswordDto,
+  ) {
+    return this.userService.ChangePassword(id, passwordDto);
   }
 }

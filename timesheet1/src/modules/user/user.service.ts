@@ -4,11 +4,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import AppUtil from '@src/common/utils';
 import bcrypt from 'bcrypt';
 import { FindOptionsWhere, Repository } from 'typeorm';
 import { UpdateUserInfoDto } from '../userInfo/dto/userInfo.dto';
 import { UserInfoEntity } from '../userInfo/userInfo.entity';
-import { CreateUserDto } from './dto/creater-user.dto';
+import { ChangePasswordDto, CreateUserDto } from './dto/creater-user.dto';
 import { UserEntity } from './user.entity';
 
 @Injectable()
@@ -110,5 +111,30 @@ export class UserService {
 
     Object.assign(userInfo, updateUserInfo);
     return await this.userInfoRepository.save(userInfo);
+  }
+
+  async ChangePassword(user_id: number, passwordDto: ChangePasswordDto) {
+    const user = await this.userRepository.findOne({ where: { id: user_id } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    const { currentPassword, newPassword, confirmPassword } = passwordDto;
+    const isCurrentPassword = await AppUtil.validateHash(
+      currentPassword,
+      user.password,
+    );
+    console.log(isCurrentPassword);
+    console.log(currentPassword);
+    console.log(user.password);
+    if (!isCurrentPassword) {
+      throw new BadRequestException('Current password is incorrect');
+    }
+    if (newPassword !== confirmPassword) {
+      throw new BadRequestException(
+        'New password and confirm password do not match',
+      );
+    }
+    user.password = newPassword;
+    await this.userRepository.save(user);
   }
 }

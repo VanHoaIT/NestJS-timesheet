@@ -59,3 +59,23 @@ export class CreateUserDto {
   @IsOptional()
   current_address?: string;
 }
+
+export class ChangePasswordDto {
+  @IsString()
+  @ApiProperty()
+  currentPassword: string;
+
+  @IsString({ message: 'Password must be a string' })
+  @MinLength(6, {
+    message: 'Password must be at least 6 characters long',
+  })
+  @ApiProperty()
+  newPassword: string;
+
+  @IsString({ message: 'Password must be a string' })
+  @MinLength(6, {
+    message: 'Password must be at least 6 characters long',
+  })
+  @ApiProperty()
+  confirmPassword: string;
+}
